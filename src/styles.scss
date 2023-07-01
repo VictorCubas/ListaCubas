@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --header-height: 60px;
+    --sidebar-width: 255px;
+    --header-bg: #d2efff;
+    --tittle-bg: #006091;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin:  0;
+  }

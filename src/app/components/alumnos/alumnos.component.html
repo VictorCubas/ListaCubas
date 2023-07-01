@@ -1,0 +1,31 @@
+<h1 class="pl-20 pr-20 pt-10 pb-10 font-bold bg-title text-white">LISTA DE ALUMNOS</h1>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 pl-20 pr-20 pt-10 pb-10">
+
+    <div *ngFor="let alumno of alumnos" class="max-w-xs rounded overflow-hidden shadow-lg">
+        <img class="w-full" src={{alumno.image}} alt="Imagen de perfil de alunno">
+
+        <div class="px-6 py-4">
+            <!-- Uso de la directiva de atributo ngClass -->
+            <div [ngClass]="alumno.gender === 'Male' ? 'font-bold text-xl mb-2 border border-blue-500 rounded':
+                    'font-bold text-xl mb-2 border border-pink-500 rounded'">{{alumno.name | uppercase}}</div>
+
+            <p class="text-gray-700 text-base text-justify"> {{alumno.description}}</p>
+            <div class="flex">
+                <p class="text-gray-700 text-base">Modalidad: {{alumno.modalidad}}</p>
+                <!-- Uso de la directiva de atributo ngClass -->
+                <i [ngClass]="alumno.modalidad === 'Virtual'? 'fa fa-laptop pl-2' : 'fa fa-home pl-2'"  style="font-size:24px"></i>
+            </div>
+            <p class="text-gray-700 text-base">Nacimiento: {{alumno.dateOfBirth | date: "dd/MM/YYYY"}}</p>
+            <p class="text-gray-700 text-base">Costo del curso: {{alumno.price | currency}}</p>
+            <p>{{alumno.gender}}</p>
+
+            <!-- se usa la directiva estructural *ngIf - else -->
+            <p class="bg-green-400 text-white rounded pl-2" *ngIf="alumno.coderBeca; else noCoderBeca">Coder Beca: Si</p>
+
+            <ng-template #noCoderBeca>
+                <p class="bg-red-400 text-white rounded pl-2">Coder Beca: No</p>
+            </ng-template>
+        </div>
+    </div>
+      
+</div>
