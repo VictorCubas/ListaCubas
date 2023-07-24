@@ -17,7 +17,12 @@ export class AlumnosComponent implements OnDestroy {
   cantidadAlumnos: number = 1;
 
   constructor(private alumnosService: AlumnosService){
-    this.alumnosAsync = this.alumnosService.getAlumnos();
+    this.alumnosAsync = this.alumnosService.getAlumnos().pipe(
+      map(alumnos => alumnos.map(alumno => ({
+        ...alumno, // Mantenemos todas las propiedades del alumno original
+        name: alumno.name.toUpperCase() // Modificamos solo la propiedad "name"
+      })))
+    );
     this.loadDataInterval();
   }
 
